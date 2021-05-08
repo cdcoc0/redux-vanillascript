@@ -915,7 +915,7 @@ var toggleSwitch = function toggleSwitch() {
   };
 };
 
-var increase = function increase() {
+var increase = function increase(difference) {
   return {
     type: INCREASE,
     difference: difference
@@ -952,7 +952,7 @@ function reducer() {
 
     case DECREASE:
       return _objectSpread(_objectSpread({}, state), {}, {
-        counter: state.counter + 1
+        counter: state.counter - 1
       });
 
     default:
@@ -978,6 +978,34 @@ var render = function render() {
 };
 
 render();
+store.subscribe(render);
+
+var handleToggleClick = function handleToggleClick() {
+  console.log("clicked");
+  store.dispatch(toggleSwitch());
+}; // btnIncrease.onClick = () => {
+//     console.log("btnIncrease clicked");
+//     store.dispatch(increase(1));
+// };
+// btnDecrease.onClick = () => {
+//     console.log("btnDecrease clicked")
+//     store.dispatch(decrease());
+// };
+
+
+var handleIncrease = function handleIncrease() {
+  console.log("btnIncrease clicked");
+  store.dispatch(increase(1));
+};
+
+var handleDecrease = function handleDecrease() {
+  console.log("btnDecrease clicked");
+  store.dispatch(decrease());
+};
+
+divToggle.addEventListener("click", handleToggleClick);
+btnIncrease.addEventListener("click", handleIncrease);
+btnDecrease.addEventListener("click", handleDecrease);
 },{"redux":"../node_modules/redux/es/redux.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

@@ -10,7 +10,7 @@ const INCREASE = 'INCREASE';
 const DECREASE = 'DECREASE';
 
 const toggleSwitch = () => ({type: TOGGLE_SWITCH});
-const increase = () => ({type: INCREASE, difference});
+const increase = difference => ({type: INCREASE, difference});
 const decrease = () => ({type: DECREASE});
 
 const initialState = {
@@ -35,7 +35,7 @@ function reducer(state = initialState, action) {
         case DECREASE:
             return {
                 ...state,
-                counter: state.counter + 1
+                counter: state.counter - 1
             };
         default:
             return state;
@@ -60,3 +60,33 @@ const render = () => {
 };
 
 render();
+store.subscribe(render);
+
+const handleToggleClick = () => {
+    console.log("clicked");
+    store.dispatch(toggleSwitch());
+};
+
+// btnIncrease.onClick = () => {
+//     console.log("btnIncrease clicked");
+//     store.dispatch(increase(1));
+// };
+
+// btnDecrease.onClick = () => {
+//     console.log("btnDecrease clicked")
+//     store.dispatch(decrease());
+// };
+
+const handleIncrease = () => {
+    console.log("btnIncrease clicked");
+    store.dispatch(increase(1));
+};
+
+const handleDecrease = () => {
+    console.log("btnDecrease clicked")
+    store.dispatch(decrease());
+}
+
+divToggle.addEventListener("click", handleToggleClick);
+btnIncrease.addEventListener("click", handleIncrease);
+btnDecrease.addEventListener("click", handleDecrease);
